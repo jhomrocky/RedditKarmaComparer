@@ -9,18 +9,32 @@ import json
 from urllib.request import urlopen
 
 # allows user to pick 2 usernames to compare
-user_one = input("")
-user_two = input("")
-user_one = user_one.lower()
-user_two = user_two.lower()
+# user_one = input("Name: ")
+# user_two = input("Name: ")
+# user_one = user_one.lower()
+# user_two = user_two.lower()
 
 # inserts the two users into 2 variables that uses %s to fill in the username portion
-first_json = ("https://www.reddit.com/user/%s.json" % user_one)
-second_json = ("https://www.reddit.com/user/%s.json" % user_two)
+first_json = ("https://www.reddit.com/user/normalism.json") # % user_one)
+second_json = ("https://www.reddit.com/user/clockwork8.json") # % user_two)
 
-# dumping data into json representation
+# loading all data into json representation
 first_user_info = json.load(urlopen(first_json))
+# grabbing 'data' dictionary key
+first_user_info_data = first_user_info['data']
+# going deeper, grabbing 'children' key from data dict
+first_user_info_children = first_user_info_data['children']
+# even further, grabbing the first (most recent post) 'data' index from 'children'
+first_user_children_data = first_user_info_children[0]
+# finally grabbing the text of the message
+first_user_post_body = first_user_children_data['data']['body']
+# and grabbing the karma score as well
+first_user_post_score = first_user_children_data['data']['score']
+
+
 second_user_info = json.load(urlopen(second_json))
 
-print(first_user_info)
-print(second_user_info)
+
+print(first_user_post_body)
+print(first_user_post_score)
+print(first_user_info_children)
