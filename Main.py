@@ -24,7 +24,7 @@ first_user_info = json.load(urlopen(first_json))
 first_user_info_data = first_user_info['data']
 # going deeper, grabbing 'children' key from data dict
 first_user_info_children = first_user_info_data['children']
-# even further, grabbing the first (most recent post) 'data' index from 'children'
+# even further, grabbing the first (most recent post) index from 'children'
 first_user_children_data = first_user_info_children[0]
 # finally grabbing the text of the message
 first_user_post_body = first_user_children_data['data']['body']
@@ -33,8 +33,15 @@ first_user_post_score = first_user_children_data['data']['score']
 
 
 second_user_info = json.load(urlopen(second_json))
-
+second_user_info_data = second_user_info['data']
+second_user_info_children = second_user_info_data['children']
+second_user_children_data = second_user_info_children[0]
+second_user_post_body = second_user_children_data['data']['body']
+second_user_post_score = second_user_children_data['data']['score']
 
 print(first_user_post_body)
 print(first_user_post_score)
-print(first_user_info_children)
+
+print(second_user_post_body)
+print(second_user_post_score)
+
