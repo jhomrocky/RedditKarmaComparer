@@ -77,9 +77,10 @@ def check_users():
     # prints different messages based on higher score
     if first_user_post_score > second_user_post_score:
         print("%s did better on their post." % user_one)
-    else:
+    elif first_user_post_score < second_user_post_score:
         print("%s did better on their post." % user_one)
-
+    else:
+        print("%s and %s are tied on their last post." % (user_one, user_two))
     user_retry = input("Do another set of usernames? Y for yes, N for no:\n> ")
     user_retry = user_retry.lower()
     if user_retry == 'y':
